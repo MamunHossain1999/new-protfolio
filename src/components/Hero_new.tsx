@@ -1,7 +1,38 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowRight, Download, Code, Sparkles } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const Hero = () => {
+  const [currentRole, setCurrentRole] = useState('');
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [charIndex, setCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const roles = ['Frontend Developer', 'MERN Stack Developer'];
+    const typeSpeed = isDeleting ? 50 : 100;
+    const pauseTime = isDeleting ? 500 : 2000;
+
+    const timer = setTimeout(() => {
+      const currentText = roles[roleIndex];
+      
+      if (!isDeleting && charIndex < currentText.length) {
+        setCurrentRole(currentText.substring(0, charIndex + 1));
+        setCharIndex(charIndex + 1);
+      } else if (isDeleting && charIndex > 0) {
+        setCurrentRole(currentText.substring(0, charIndex - 1));
+        setCharIndex(charIndex - 1);
+      } else if (!isDeleting && charIndex === currentText.length) {
+        setTimeout(() => setIsDeleting(true), pauseTime);
+      } else if (isDeleting && charIndex === 0) {
+        setIsDeleting(false);
+        setRoleIndex((roleIndex + 1) % roles.length);
+      }
+    }, typeSpeed);
+
+    return () => clearTimeout(timer);
+  }, [charIndex, isDeleting, roleIndex]);
+
   return (
     <section className="hero-modern">
       {/* Background Elements */}
@@ -53,7 +84,10 @@ const Hero = () => {
             >
               <span className="title-line">Hi, I'm</span>
               <span className="title-name">Md Mamun Hossain</span>
-              <span className="title-role">Full Stack Developer</span>
+              <span className="title-role">
+                {currentRole}
+                <span className="typing-cursor">|</span>
+              </span>
             </motion.h1>
 
             {/* Description */}

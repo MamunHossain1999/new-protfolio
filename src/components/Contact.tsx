@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Send, Zap, Clock, CheckCircle } from 'lucide-react';
-
+import emailjs from 'emailjs-com';
+import { toast } from 'react-toastify';
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -30,21 +31,34 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate sending
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      await emailjs.send(
+        'service_w24zmml',      // তোমার Service ID
+        'template_3glsj9a',     // তোমার Template ID
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        'xFtIaACChM3G0Wd3-'     // তোমার Public Key
+      );
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      setIsSubmitting(false);
+      toast.success('Message sent successfully!');
 
-    // Reset form
-    setTimeout(() => {
-      setIsSubmitted(false);
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 3000);
+    } catch (error) {
+      console.error('Email send error:', error);
+      setIsSubmitting(false);
+      toast.error('Failed to send message. Please try again later.');
+    }
   };
 
   return (

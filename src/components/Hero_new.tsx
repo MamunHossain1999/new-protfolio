@@ -1,37 +1,69 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowRight, Download, Code, Sparkles } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowRight, Download, Code, Sparkles, Database, Globe, Monitor, Smartphone, Cpu } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import Lottie from 'lottie-react';
+import developerAnimationData from '../assets/developer skills (1).json';
 
 const Hero = () => {
-  const [currentRole, setCurrentRole] = useState('');
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    const roles = ['Frontend Developer', 'MERN Stack Developer'];
-    const typeSpeed = isDeleting ? 50 : 100;
-    const pauseTime = isDeleting ? 500 : 2000;
-
-    const timer = setTimeout(() => {
-      const currentText = roles[roleIndex];
+    const texts = [
+      'Frontend Developer',
+      'MERN Stack Developer', 
+      'React Specialist',
+      'Full Stack Engineer'
+    ];
+    
+    let timeoutId: NodeJS.Timeout | null = null;
+    let charIndex = 0;
+    let isDeleting = false;
+    
+    const type = () => {
+      const currentText = texts[currentIndex];
       
-      if (!isDeleting && charIndex < currentText.length) {
-        setCurrentRole(currentText.substring(0, charIndex + 1));
-        setCharIndex(charIndex + 1);
-      } else if (isDeleting && charIndex > 0) {
-        setCurrentRole(currentText.substring(0, charIndex - 1));
-        setCharIndex(charIndex - 1);
-      } else if (!isDeleting && charIndex === currentText.length) {
-        setTimeout(() => setIsDeleting(true), pauseTime);
-      } else if (isDeleting && charIndex === 0) {
-        setIsDeleting(false);
-        setRoleIndex((roleIndex + 1) % roles.length);
+      if (!isDeleting) {
+        // Typing
+        setDisplayText(currentText.substring(0, charIndex + 1));
+        charIndex++;
+        
+        if (charIndex === currentText.length) {
+          // Finished typing, wait then start deleting
+          timeoutId = setTimeout(() => {
+            isDeleting = true;
+            type();
+          }, 2000);
+          return;
+        }
+        
+        timeoutId = setTimeout(type, 100);
+      } else {
+        // Deleting
+        setDisplayText(currentText.substring(0, charIndex));
+        charIndex--;
+        
+        if (charIndex < 0) {
+          // Finished deleting, move to next text
+          isDeleting = false;
+          charIndex = 0;
+          setCurrentIndex((prev) => (prev + 1) % texts.length);
+          timeoutId = setTimeout(type, 500);
+          return;
+        }
+        
+        timeoutId = setTimeout(type, 50);
       }
-    }, typeSpeed);
-
-    return () => clearTimeout(timer);
-  }, [charIndex, isDeleting, roleIndex]);
+    };
+    
+    timeoutId = setTimeout(type, 1000);
+    
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [currentIndex]);
 
   return (
     <section className="hero-modern">
@@ -84,8 +116,13 @@ const Hero = () => {
             >
               <span className="title-line">Hi, I'm</span>
               <span className="title-name">Md Mamun Hossain</span>
-              <span className="title-role">
-                {currentRole}
+              <span 
+                className="title-role"
+                style={{ 
+                  color: ['#60a5fa', '#10b981', '#8b5cf6', '#f59e0b', '#ef4444'][currentIndex]
+                }}
+              >
+                {displayText}
                 <span className="typing-cursor">|</span>
               </span>
             </motion.h1>
@@ -165,106 +202,200 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Visual Section */}
+          {/* Right Side Coding Animation */}
           <motion.div 
             className="hero-visual"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <div className="visual-container">
-              {/* Code Card */}
+            <div className="coding-animation-container">
               <motion.div 
-                className="code-card"
+                className="coding-animation-wrapper"
                 animate={{ 
                   y: [-10, 10, -10],
-                  rotateY: [0, 5, 0]
+                  rotateY: [0, 2, 0, -2, 0]
                 }}
-                transition={{ duration: 6, repeat: Infinity }}
-                whileHover={{ scale: 1.05, rotateY: 15 }}
-              >
-                <div className="card-header">
-                  <div className="card-dots">
-                    <span className="dot red"></span>
-                    <span className="dot yellow"></span>
-                    <span className="dot green"></span>
-                  </div>
-                  <span className="card-title">portfolio.js</span>
-                </div>
-                <div className="card-content">
-                  <div className="code-line">
-                    <span className="line-number">1</span>
-                    <span className="code-keyword">const</span> <span className="code-variable">developer</span> = {"{"}
-                  </div>
-                  <div className="code-line">
-                    <span className="line-number">2</span>
-                    &nbsp;&nbsp;<span className="code-property">name</span>: <span className="code-string">'Mamun'</span>,
-                  </div>
-                  <div className="code-line">
-                    <span className="line-number">3</span>
-                    &nbsp;&nbsp;<span className="code-property">skills</span>: [<span className="code-string">'React'</span>, <span className="code-string">'Node.js'</span>],
-                  </div>
-                  <div className="code-line">
-                    <span className="line-number">4</span>
-                    &nbsp;&nbsp;<span className="code-property">passion</span>: <span className="code-string">'Building Amazing Apps'</span>
-                  </div>
-                  <div className="code-line">
-                    <span className="line-number">5</span>
-                    {"}"};
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Tech Stack Card */}
-              <motion.div 
-                className="tech-card"
-                animate={{ 
-                  y: [10, -10, 10],
-                  rotateY: [0, -5, 0]
+                transition={{ 
+                  y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                  rotateY: { duration: 8, repeat: Infinity, ease: "easeInOut" }
                 }}
-                transition={{ duration: 8, repeat: Infinity }}
-                whileHover={{ scale: 1.05, rotateY: -15 }}
               >
-                <div className="tech-header">
-                  <Code size={24} />
-                  <span>Tech Stack</span>
-                </div>
-                <div className="tech-grid">
-                  <span className="tech-item">React</span>
-                  <span className="tech-item">Node.js</span>
-                  <span className="tech-item">MongoDB</span>
-                  <span className="tech-item">Express</span>
-                  <span className="tech-item">TypeScript</span>
-                  <span className="tech-item">Next.js</span>
-                </div>
+                <Lottie 
+                  animationData={developerAnimationData}
+                  className="coding-lottie-animation"
+                  loop={true}
+                  autoplay={true}
+                />
               </motion.div>
-
-              {/* Floating Elements */}
+              
+              {/* Floating Code Elements */}
               <motion.div 
-                className="floating-element element-1"
+                className="floating-code-element code-element-1"
                 animate={{ 
-                  y: [-20, 20, -20],
+                  y: [-15, 15, -15],
                   rotate: [0, 360]
                 }}
                 transition={{ 
-                  y: { duration: 4, repeat: Infinity },
-                  rotate: { duration: 8, repeat: Infinity, ease: "linear" }
+                  y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 20, repeat: Infinity, ease: "linear" }
                 }}
               >
-                <Sparkles size={20} />
+                &lt;/&gt;
               </motion.div>
               
               <motion.div 
-                className="floating-element element-2"
+                className="floating-code-element code-element-2"
                 animate={{ 
                   y: [20, -20, 20],
                   x: [-10, 10, -10]
                 }}
-                transition={{ duration: 5, repeat: Infinity }}
+                transition={{ 
+                  y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+                  x: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                }}
               >
-                <Code size={18} />
+                {"{"}{"}"} 
+              </motion.div>
+              
+              <motion.div 
+                className="floating-code-element code-element-3"
+                animate={{ 
+                  y: [-10, 10, -10],
+                  rotate: [0, -180, 0]
+                }}
+                transition={{ 
+                  y: { duration: 3.5, repeat: Infinity, ease: "easeInOut" },
+                  rotate: { duration: 15, repeat: Infinity, ease: "linear" }
+                }}
+              >
+                [ ]
               </motion.div>
             </div>
+          </motion.div>
+
+        </div>
+
+        {/* Background Floating Icons */}
+        <div className="bg-floating-icons">
+          <motion.div 
+            className="bg-icon bg-icon-1"
+            whileHover={{ 
+              scale: 1.3, 
+              rotate: 360,
+              color: "#60a5fa",
+              transition: { duration: 0.6 }
+            }}
+            animate={{ 
+              y: [-15, 15, -15],
+              rotate: [0, 180, 360]
+            }}
+            transition={{ 
+              y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 20, repeat: Infinity, ease: "linear" }
+            }}
+          >
+            <Code size={28} />
+          </motion.div>
+
+          <motion.div 
+            className="bg-icon bg-icon-2"
+            whileHover={{ 
+              scale: 1.4, 
+              rotate: -360,
+              color: "#8b5cf6",
+              transition: { duration: 0.5 }
+            }}
+            animate={{ 
+              y: [20, -20, 20],
+              x: [-10, 10, -10]
+            }}
+            transition={{ 
+              y: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+              x: { duration: 5, repeat: Infinity, ease: "easeInOut" }
+            }}
+          >
+            <Database size={24} />
+          </motion.div>
+
+          <motion.div 
+            className="bg-icon bg-icon-3"
+            whileHover={{ 
+              scale: 1.5, 
+              rotate: 180,
+              color: "#10b981",
+              transition: { duration: 0.7 }
+            }}
+            animate={{ 
+              y: [-25, 25, -25],
+              rotate: [0, 360]
+            }}
+            transition={{ 
+              y: { duration: 7, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 15, repeat: Infinity, ease: "linear" }
+            }}
+          >
+            <Globe size={26} />
+          </motion.div>
+
+          <motion.div 
+            className="bg-icon bg-icon-4"
+            whileHover={{ 
+              scale: 1.2, 
+              rotate: -180,
+              color: "#f59e0b",
+              transition: { duration: 0.4 }
+            }}
+            animate={{ 
+              y: [18, -18, 18],
+              x: [15, -15, 15]
+            }}
+            transition={{ 
+              y: { duration: 9, repeat: Infinity, ease: "easeInOut" },
+              x: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+            }}
+          >
+            <Monitor size={25} />
+          </motion.div>
+
+          <motion.div 
+            className="bg-icon bg-icon-5"
+            whileHover={{ 
+              scale: 1.6, 
+              rotate: 270,
+              color: "#ef4444",
+              transition: { duration: 0.8 }
+            }}
+            animate={{ 
+              y: [-12, 12, -12],
+              rotate: [0, -360]
+            }}
+            transition={{ 
+              y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 25, repeat: Infinity, ease: "linear" }
+            }}
+          >
+            <Smartphone size={22} />
+          </motion.div>
+
+          <motion.div 
+            className="bg-icon bg-icon-6"
+            whileHover={{ 
+              scale: 1.3, 
+              rotate: 90,
+              color: "#8b5cf6",
+              transition: { duration: 0.6 }
+            }}
+            animate={{ 
+              y: [22, -22, 22],
+              x: [-20, 20, -20]
+            }}
+            transition={{ 
+              y: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+              x: { duration: 7, repeat: Infinity, ease: "easeInOut" }
+            }}
+          >
+            <Cpu size={27} />
           </motion.div>
         </div>
       </div>

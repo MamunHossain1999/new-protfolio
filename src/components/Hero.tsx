@@ -56,7 +56,7 @@ const Hero = () => {
             >
               <span className="title-line">Hi, I'm</span>
               <span className="title-name">Md Mamun Hossain</span>
-              <span className="title-role">Full Stack Developer</span>
+              <span className="title-role">MERN Stack Developer</span>
             </motion.h1>
 
             {/* Description */}

@@ -31,38 +31,41 @@ const Projects = () => {
       description: "A comprehensive digital wallet application featuring secure money transfers, bill payments, transaction history, and multi-currency support. Built with advanced security protocols and real-time notifications for seamless financial management.",
       image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=600&h=400&fit=crop&crop=center",
       technologies: ["React", "Node.js", "MongoDB", "Stripe", "JWT", "Socket.io"],
-      github: "https://github.com/MamunHossain1999/digital-wallet",
-      live: "https://digital-wallet-mamun.netlify.app",
+      github_Client: "https://github.com/MamunHossain1999/digital-wallet-client",
+      github_Server: "https://github.com/MamunHossain1999/digital-wallet-server",
+      live: "https://digital-wallet-client-mu.vercel.app/",
       featured: true,
       category: "FinTech",
       year: "2024",
       status: "Live",
       highlights: ["Secure Payments", "Multi-Currency", "Real-time Notifications"]
     },
-    {
-      id: 2,
-      title: "School Management System",
-      subtitle: "Educational Administration Platform",
-      description: "Complete school management solution with student enrollment, attendance tracking, grade management, parent-teacher communication, and administrative tools. Features comprehensive reporting and analytics for educational institutions.",
-      image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop&crop=center",
-      technologies: ["React", "Express.js", "MySQL", "Chart.js", "PDF-lib", "Nodemailer"],
-      github: "https://github.com/MamunHossain1999/school-management-system",
-      live: "https://school-management-mamun.netlify.app",
-      featured: true,
-      category: "Education",
-      year: "2024",
-      status: "Live",
-      highlights: ["Student Portal", "Attendance System", "Grade Analytics"]
-    },
+    // {
+    //   id: 2,
+    //   title: "School Management System",
+    //   subtitle: "Educational Administration Platform",
+    //   description: "Complete school management solution with student enrollment, attendance tracking, grade management, parent-teacher communication, and administrative tools. Features comprehensive reporting and analytics for educational institutions.",
+    //   image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop&crop=center",
+    //   technologies: ["React", "Express.js", "MySQL", "Chart.js", "PDF-lib", "Nodemailer"],
+    //   github_Client: "https://github.com/MamunHossain1999/school-management-client",
+    //   github_Server: "https://github.com/MamunHossain1999/school-management-server",
+    //   live: "https://school-management-mamun.netlify.app",
+    //   featured: true,
+    //   category: "Education",
+    //   year: "2024",
+    //   status: "Live",
+    //   highlights: ["Student Portal", "Attendance System", "Grade Analytics"]
+    // },
     {
       id: 3,
       title: "Library Management System",
       subtitle: "Digital Library Solution",
       description: "Modern library management system with book cataloging, member management, borrowing/returning system, fine calculation, and digital book access. Includes advanced search functionality and inventory management.",
       image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&h=400&fit=crop&crop=center",
-      technologies: ["React", "Node.js", "PostgreSQL", "Prisma", "Tailwind CSS", "QR Code"],
-      github: "https://github.com/MamunHossain1999/library-management-system",
-      live: "https://library-management-mamun.netlify.app",
+      technologies: ["React", "Node.js", "MongoDB", "Mongoose", "Tailwind CSS", "QR Code"],
+      github_Client: "https://github.com/MamunHossain1999/libray-management-system-frontend",
+      github_Server: "https://github.com/MamunHossain1999/Library-API",
+      live: "https://libray-management-system-frontend.vercel.app/",
       featured: true,
       category: "Management",
       year: "2024",
@@ -76,7 +79,8 @@ const Projects = () => {
       description: "Full-featured e-commerce platform with product management, shopping cart, secure checkout, order tracking, and admin dashboard. Includes payment integration and inventory management.",
       image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600&h=400&fit=crop&crop=center",
       technologies: ["React", "Node.js", "MongoDB", "Stripe", "Cloudinary"],
-      github: "https://github.com/MamunHossain1999/ecommerce-platform",
+      github_Client: "https://github.com/MamunHossain1999/ecommerce-client",
+      github_Server: "https://github.com/MamunHossain1999/ecommerce-server",
       live: "https://ecommerce-mamun.netlify.app",
       featured: false,
       category: "E-Commerce",
@@ -91,7 +95,8 @@ const Projects = () => {
       description: "Collaborative task management application with project organization, team collaboration, deadline tracking, and progress monitoring. Features real-time updates and notification system.",
       image: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&h=400&fit=crop&crop=center",
       technologies: ["React", "Firebase", "Material-UI", "Socket.io", "PWA"],
-      github: "https://github.com/MamunHossain1999/task-management-app",
+      github_Client: "https://github.com/MamunHossain1999/task-management-client",
+      github_Server: "https://github.com/MamunHossain1999/task-management-server",
       live: "https://task-manager-mamun.netlify.app",
       featured: false,
       category: "Productivity",
@@ -225,17 +230,44 @@ const Projects = () => {
                     <ExternalLink size={18} />
                     Live Demo
                   </motion.a>
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-btn secondary"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Github size={18} />
-                    Source Code
-                  </motion.a>
+                  {project.github_Client && project.github_Server ? (
+                    <>
+                      <motion.a
+                        href={project.github_Client}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-btn secondary"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Github size={18} />
+                        Client Code
+                      </motion.a>
+                      <motion.a
+                        href={project.github_Server}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-btn secondary"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        <Github size={18} />
+                        Server Code
+                      </motion.a>
+                    </>
+                  ) : (
+                    <motion.a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-btn secondary"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Github size={18} />
+                      Source Code
+                    </motion.a>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -308,16 +340,44 @@ const Projects = () => {
                 
                 <div className="card-footer">
                   <div className="card-links">
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="card-link"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <Github size={16} />
-                    </motion.a>
+                    {project.github_Client && project.github_Server ? (
+                      <>
+                        <motion.a
+                          href={project.github_Client}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="card-link"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          title="Client Repository"
+                        >
+                          <Github size={16} />
+                        </motion.a>
+                        <motion.a
+                          href={project.github_Server}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="card-link"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          title="Server Repository"
+                        >
+                          <Github size={16} />
+                        </motion.a>
+                      </>
+                    ) : (
+                      <motion.a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="card-link"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        title="Source Code"
+                      >
+                        <Github size={16} />
+                      </motion.a>
+                    )}
                     <motion.a
                       href={project.live}
                       target="_blank"
@@ -325,6 +385,7 @@ const Projects = () => {
                       className="card-link"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
+                      title="Live Demo"
                     >
                       <ExternalLink size={16} />
                     </motion.a>

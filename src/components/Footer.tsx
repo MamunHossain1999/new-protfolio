@@ -42,19 +42,19 @@ const Footer = () => {
     {
       icon: <Github size={20} />,
       name: "GitHub",
-      url: "https://github.com/mamun-dev",
+      url: "https://github.com/MamunHossain1999",
       color: "#333"
     },
     {
       icon: <Linkedin size={20} />,
       name: "LinkedIn", 
-      url: "https://linkedin.com/in/mamun-dev",
+      url: "https://www.linkedin.com/in/mamun-hossain1999/",
       color: "#0077b5"
     },
     {
       icon: <Twitter size={20} />,
       name: "Twitter",
-      url: "https://twitter.com/mamun_dev",
+      url: "https://twitter.com",
       color: "#1da1f2"
     },
     {
@@ -132,7 +132,7 @@ const Footer = () => {
                 </motion.div>
                 <div className="brand-text">
                   <h3>Md Mamun Hossain</h3>
-                  <p>Full Stack Developer</p>
+                  <p>MERN Stack Developer</p>
                 </div>
               </div>
               

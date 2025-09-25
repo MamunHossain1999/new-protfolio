@@ -1,12 +1,53 @@
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, ArrowRight, Download, Sparkles, Code, Database, Globe, Monitor, Smartphone, Cpu } from 'lucide-react';
+import { Github, Linkedin, Mail, ArrowRight, Download, Code, Database, Globe, Monitor, Smartphone, Cpu } from 'lucide-react';
 import Lottie from 'lottie-react';
+import { useState, useEffect } from 'react';
 import developerAnimationData from '../assets/developer skills (1).json';
 import resumePDF from '../assets/Cover Letter Doc (2).pdf';
 
+const roles = ['MERN Stack Developer', 'Full Stack Developer', 'React Developer', 'Node.js Developer', 'JavaScript Developer'];
+const roleColors = ['#60a5fa', '#10b981', '#8b5cf6', '#f59e0b', '#ef4444'];
+
 const Hero = () => {
+  const [displayText, setDisplayText] = useState('');
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const currentRole = roles[currentIndex];
+    let charIndex = 0;
+    
+    const typeInterval = setInterval(() => {
+      if (charIndex <= currentRole.length) {
+        setDisplayText(currentRole.slice(0, charIndex));
+        charIndex++;
+      } else {
+        clearInterval(typeInterval);
+        setTimeout(() => {
+          const deleteInterval = setInterval(() => {
+            if (charIndex > 0) {
+              setDisplayText(currentRole.slice(0, charIndex - 1));
+              charIndex--;
+            } else {
+              clearInterval(deleteInterval);
+              setCurrentIndex((prev) => (prev + 1) % roles.length);
+            }
+          }, 100);
+        }, 2000);
+      }
+    }, 150);
+
+    return () => clearInterval(typeInterval);
+  }, [currentIndex]);
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section className="hero-modern">
+    <section className="hero-modern !pt-40 sm:!pt-44 md:!pt-40 lg:!pt-52 xl:!pt-0">
       {/* Background Elements */}
       <div className="hero-bg">
         <motion.div 
@@ -27,41 +68,37 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container">
-        <div className="hero-grid">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="hero-grid grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center min-h-[calc(100vh-80px)]">
           {/* Content Section */}
           <motion.div 
-            className="hero-content"
+            className="hero-content flex flex-col gap-4 sm:gap-6 md:gap-8 text-center md:text-left order-2 md:order-1"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            {/* Status Badge */}
-            <motion.div 
-              className="status-badge"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              <Sparkles size={16} />
-              <span>Available for Projects</span>
-            </motion.div>
 
             {/* Main Title */}
             <motion.h1 
-              className="hero-title"
+              className="hero-title text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <span className="title-line">Hi, I'm</span>
-              <span className="title-name">Md Mamun Hossain</span>
-              <span className="title-role">MERN Stack Developer</span>
+              <span className="title-line text-base sm:text-lg md:text-xl lg:text-2xl block mb-2">Hi, I'm</span>
+              <span className="title-name block mb-2 sm:mb-3">Md Mamun Hossain</span>
+              <span 
+                className="title-role text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl block"
+                style={{ color: roleColors[currentIndex] }}
+              >
+                {displayText}
+                <span className="typing-cursor animate-pulse">|</span>
+              </span>
             </motion.h1>
 
             {/* Description */}
             <motion.p 
-              className="hero-description"
+              className="hero-description text-sm sm:text-base md:text-lg lg:text-xl max-w-[45ch] sm:max-w-[50ch] md:max-w-[55ch] mx-auto md:mx-0 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
@@ -72,41 +109,42 @@ const Hero = () => {
 
             {/* Action Buttons */}
             <motion.div 
-              className="hero-actions"
+              className="hero-actions flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 items-stretch sm:items-center justify-center md:justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
               <motion.button
-                className="btn-primary"
+                className="btn-primary w-full sm:w-auto px-4 sm:px-6 md:px-8 py-3 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg"
+                onClick={scrollToContact}
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <span>Let's Work Together</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={16} className="sm:w-5 sm:h-5" />
               </motion.button>
               
               <motion.a
                 href={resumePDF}
                 download="Md_Mamun_Hossain_Resume.pdf"
-                className="btn-secondary"
+                className="btn-secondary w-full sm:w-auto px-4 sm:px-6 md:px-8 py-3 sm:py-3 md:py-4 text-sm sm:text-base md:text-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Download size={18} />
+                <Download size={16} className="sm:w-5 sm:h-5" />
                 <span>Download CV</span>
               </motion.a>
             </motion.div>
 
             {/* Social Links */}
             <motion.div 
-              className="hero-social"
+              className="hero-social flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center md:justify-start"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
             >
-              <span className="social-label">Connect with me:</span>
-              <div className="social-links">
+              <span className="social-label text-xs sm:text-sm md:text-base">Connect with me:</span>
+              <div className="social-links flex gap-2 sm:gap-3">
                 <motion.a
                   href="https://github.com/MamunHossain1999"
                   target="_blank"
@@ -138,14 +176,14 @@ const Hero = () => {
 
           {/* Right Side Coding Animation Image */}
           <motion.div 
-            className="hero-visual"
+            className="hero-visual h-[280px] sm:h-[350px] md:h-[450px] lg:h-[550px] xl:h-[600px] order-1 md:order-2"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <div className="coding-animation-container">
+            <div className="coding-animation-container h-full flex items-center justify-center p-2">
               <motion.div 
-                className="coding-animation-wrapper"
+                className="coding-animation-wrapper w-full max-w-[350px] sm:max-w-[420px] md:max-w-[520px] lg:max-w-[620px] xl:max-w-[680px]"
                 animate={{ 
                   y: [-10, 10, -10],
                   rotateY: [0, 2, 0, -2, 0]
@@ -165,7 +203,7 @@ const Hero = () => {
               
               {/* Floating Code Elements */}
               <motion.div 
-                className="floating-code-element code-element-1"
+                className="floating-code-element code-element-1 hidden sm:block"
                 animate={{ 
                   y: [-15, 15, -15],
                   rotate: [0, 360]
@@ -179,7 +217,7 @@ const Hero = () => {
               </motion.div>
               
               <motion.div 
-                className="floating-code-element code-element-2"
+                className="floating-code-element code-element-2 hidden sm:block"
                 animate={{ 
                   y: [20, -20, 20],
                   x: [-10, 10, -10]
@@ -193,7 +231,7 @@ const Hero = () => {
               </motion.div>
               
               <motion.div 
-                className="floating-code-element code-element-3"
+                className="floating-code-element code-element-3 hidden sm:block"
                 animate={{ 
                   y: [-10, 10, -10],
                   rotate: [0, -180, 0]

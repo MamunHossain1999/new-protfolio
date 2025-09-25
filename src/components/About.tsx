@@ -47,7 +47,7 @@ const About = () => {
 
   const personalInfo = [
     { icon: <Calendar size={20} />, label: "Age", value: "24 Years" },
-    { icon: <MapPin size={20} />, label: "Location", value: "Rangpur, Panchagarh" },
+    { icon: <MapPin size={20} />, label: "Location", value: "Bangladesh, Rangpur, Panchagarh" },
     { icon: <Mail size={20} />, label: "Email", value: "developermamun1999@gmail.com" },
     { icon: <Phone size={20} />, label: "Phone", value: "+880 1795920956" }
   ];

@@ -100,7 +100,7 @@ const Contact = () => {
 
             <motion.div variants={itemVariants} className="contact-methods">
               <motion.a
-                href="mailto:developermamun1999@gmail.com"
+                href="mailto:developermamun1999@gmail.com?subject=Hello%20Mamun%20%E2%80%93%20Project%20Inquiry"
                 className="contact-method"
                 whileHover={{ x: 5, scale: 1.02 }}
                 transition={{ duration: 0.2 }}

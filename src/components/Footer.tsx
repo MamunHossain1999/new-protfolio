@@ -60,7 +60,7 @@ const Footer = () => {
     {
       icon: <Mail size={20} />,
       name: "Email",
-      url: "mailto:developermamun1999@gmail.com",
+      url: "mailto:developermamun1999@gmail.com?subject=Hello%20Mamun%20%E2%80%93%20Project%20Inquiry",
       color: "#ea4335"
     }
   ];

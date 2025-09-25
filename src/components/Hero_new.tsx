@@ -3,6 +3,7 @@ import { Github, Linkedin, Mail, ArrowRight, Download, Code, Sparkles, Database,
 import { useState, useEffect } from 'react';
 import Lottie from 'lottie-react';
 import developerAnimationData from '../assets/developer skills (1).json';
+import resumePDF from '../assets/Cover Letter Doc (2).pdf';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
@@ -87,8 +88,8 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container">
-        <div className="hero-grid">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="hero-grid grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           {/* Content Section */}
           <motion.div 
             className="hero-content"
@@ -98,7 +99,7 @@ const Hero = () => {
           >
             {/* Status Badge */}
             <motion.div 
-              className="status-badge"
+              className="status-badge mx-auto lg:mx-0"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
@@ -109,7 +110,7 @@ const Hero = () => {
 
             {/* Main Title */}
             <motion.h1 
-              className="hero-title"
+              className="hero-title text-3xl sm:text-4xl lg:text-5xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
@@ -117,7 +118,7 @@ const Hero = () => {
               <span className="title-line">Hi, I'm</span>
               <span className="title-name">Md Mamun Hossain</span>
               <span 
-                className="title-role"
+                className="title-role text-xl sm:text-2xl lg:text-3xl"
                 style={{ 
                   color: ['#60a5fa', '#10b981', '#8b5cf6', '#f59e0b', '#ef4444'][currentIndex]
                 }}
@@ -129,7 +130,7 @@ const Hero = () => {
 
             {/* Description */}
             <motion.p 
-              className="hero-description"
+              className="hero-description max-w-[52ch] mx-auto lg:mx-0 text-base sm:text-lg"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
@@ -140,13 +141,13 @@ const Hero = () => {
 
             {/* Action Buttons */}
             <motion.div 
-              className="hero-actions"
+              className="hero-actions flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
               <motion.button
-                className="btn-primary"
+                className="btn-primary w-full sm:w-auto"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -154,14 +155,16 @@ const Hero = () => {
                 <ArrowRight size={18} />
               </motion.button>
               
-              <motion.button
-                className="btn-secondary"
+              <motion.a
+                href={resumePDF}
+                download="Md_Mamun_Hossain_Resume.pdf"
+                className="btn-secondary w-full sm:w-auto"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Download size={18} />
                 <span>Download CV</span>
-              </motion.button>
+              </motion.a>
             </motion.div>
 
             {/* Social Links */}
@@ -172,7 +175,7 @@ const Hero = () => {
               transition={{ delay: 1, duration: 0.8 }}
             >
               <span className="social-label">Connect with me:</span>
-              <div className="social-links">
+              <div className="social-links flex gap-3 justify-center lg:justify-start">
                 <motion.a
                   href="https://github.com"
                   target="_blank"
@@ -180,7 +183,7 @@ const Hero = () => {
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Github size={20} />
+                  <Github size={22} />
                 </motion.a>
                 <motion.a
                   href="https://linkedin.com"
@@ -189,14 +192,14 @@ const Hero = () => {
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Linkedin size={20} />
+                  <Linkedin size={22} />
                 </motion.a>
                 <motion.a
-                  href="mailto:contact@example.com"
+                  href="mailto:developermamun1999@gmail.com?subject=Hello%20Mamun%20%E2%80%93%20Project%20Inquiry"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Mail size={20} />
+                  <Mail size={22} />
                 </motion.a>
               </div>
             </motion.div>
@@ -204,12 +207,12 @@ const Hero = () => {
 
           {/* Right Side Coding Animation */}
           <motion.div 
-            className="hero-visual"
+            className="hero-visual h-[360px] sm:h-[420px] md:h-[500px] lg:h-[600px]"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <div className="coding-animation-container">
+            <div className="coding-animation-container h-full">
               <motion.div 
                 className="coding-animation-wrapper"
                 animate={{ 
@@ -231,7 +234,7 @@ const Hero = () => {
               
               {/* Floating Code Elements */}
               <motion.div 
-                className="floating-code-element code-element-1"
+                className="floating-code-element code-element-1 hidden sm:block"
                 animate={{ 
                   y: [-15, 15, -15],
                   rotate: [0, 360]
@@ -245,7 +248,7 @@ const Hero = () => {
               </motion.div>
               
               <motion.div 
-                className="floating-code-element code-element-2"
+                className="floating-code-element code-element-2 hidden sm:block"
                 animate={{ 
                   y: [20, -20, 20],
                   x: [-10, 10, -10]
@@ -259,7 +262,7 @@ const Hero = () => {
               </motion.div>
               
               <motion.div 
-                className="floating-code-element code-element-3"
+                className="floating-code-element code-element-3 hidden sm:block"
                 animate={{ 
                   y: [-10, 10, -10],
                   rotate: [0, -180, 0]
@@ -277,7 +280,7 @@ const Hero = () => {
         </div>
 
         {/* Background Floating Icons */}
-        <div className="bg-floating-icons">
+        <div className="bg-floating-icons hidden md:block">
           <motion.div 
             className="bg-icon bg-icon-1"
             whileHover={{ 

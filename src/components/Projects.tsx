@@ -141,11 +141,11 @@ const Projects = () => {
             <span>Portfolio Showcase</span>
           </motion.div>
           
-          <motion.h2 variants={itemVariants} className="projects-title">
+          <motion.h2 variants={itemVariants} className="projects-title text-3xl sm:text-4xl md:text-5xl font-bold">
             Featured <span className="projects-title-highlight">Projects</span>
           </motion.h2>
           
-          <motion.p variants={itemVariants} className="projects-subtitle">
+          <motion.p variants={itemVariants} className="projects-subtitle text-base sm:text-lg text-gray-600">
             Discover my latest work showcasing innovative solutions, cutting-edge technologies, and exceptional user experiences
           </motion.p>
         </motion.div>
@@ -197,9 +197,9 @@ const Projects = () => {
                   </span>
                 </div>
                 
-                <h3 className="project-name">{project.title}</h3>
-                <p className="project-tagline">{project.subtitle}</p>
-                <p className="project-desc">{project.description}</p>
+                <h3 className="project-name text-xl sm:text-2xl font-bold">{project.title}</h3>
+                <p className="project-tagline text-sm sm:text-base text-blue-600">{project.subtitle}</p>
+                <p className="project-desc text-sm sm:text-base text-gray-600">{project.description}</p>
                 
                 <div className="project-highlights">
                   {project.highlights.map((highlight, idx) => (
@@ -286,8 +286,8 @@ const Projects = () => {
             <div className="divider-line"></div>
             <div className="divider-content">
               <Code2 size={24} />
-              <h3>More Projects</h3>
-              <p>Additional work and experiments</p>
+              <h3 className="text-xl sm:text-2xl font-bold">More Projects</h3>
+              <p className="text-sm sm:text-base text-gray-600">Additional work and experiments</p>
             </div>
             <div className="divider-line"></div>
           </motion.div>
@@ -322,9 +322,9 @@ const Projects = () => {
                 </div>
                 
                 <div className="card-content">
-                  <h4 className="card-title">{project.title}</h4>
-                  <p className="card-subtitle">{project.subtitle}</p>
-                  <p className="card-description">{project.description}</p>
+                  <h4 className="card-title text-lg font-bold">{project.title}</h4>
+                  <p className="card-subtitle text-sm text-blue-600">{project.subtitle}</p>
+                  <p className="card-description text-xs sm:text-sm text-gray-600">{project.description}</p>
                   
                   <div className="card-technologies">
                     {project.technologies.slice(0, 4).map((tech, techIndex) => (
@@ -406,8 +406,8 @@ const Projects = () => {
           viewport={{ once: true, amount: 0.3 }}
         >
           <motion.div variants={itemVariants} className="cta-content">
-            <h3>Interested in Working Together?</h3>
-            <p>Let's create something amazing together. I'm always open to discussing new opportunities and exciting projects.</p>
+            <h3 className="text-xl sm:text-2xl font-bold">Interested in Working Together?</h3>
+            <p className="text-sm sm:text-base text-gray-600">Let's create something amazing together. I'm always open to discussing new opportunities and exciting projects.</p>
             <motion.a
               href="#contact"
               className="cta-button"

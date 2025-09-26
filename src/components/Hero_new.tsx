@@ -9,6 +9,7 @@ const Hero = () => {
   const [displayText, setDisplayText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
+
   useEffect(() => {
     const texts = [
       'Frontend Developer',
@@ -66,6 +67,9 @@ const Hero = () => {
     };
   }, [currentIndex]);
 
+  // Screen size detection
+
+
   return (
     <section className="hero-modern">
       {/* Background Elements */}
@@ -88,8 +92,8 @@ const Hero = () => {
         />
       </div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="hero-grid grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+      <div className="container mx-auto !px-2 md:!px-0 lg:!px-0 !pt-12 md:!pt-20 lg:!pt-20 !pb-10 md:!pb-16 lg:pb-18 ">
+        <div className="hero-grid flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-16  items-center">
           {/* Content Section */}
           <motion.div 
             className="hero-content"
@@ -99,26 +103,26 @@ const Hero = () => {
           >
             {/* Status Badge */}
             <motion.div 
-              className="status-badge mx-auto lg:mx-0"
+              className="status-badge mx-auto lg:mx-0 mb-4 sm:mb-6 text-xs xs:text-sm sm:text-base "
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
             >
-              <Sparkles size={16} />
-              <span>Available for Projects</span>
+              <Sparkles className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+              <span className="font-medium">Available for Projects</span>
             </motion.div>
 
             {/* Main Title */}
             <motion.h1 
-              className="hero-title text-3xl sm:text-4xl lg:text-5xl"
+              className="hero-title text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-center md:!text-center lg:!text-left leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
             >
-              <span className="title-line">Hi, I'm</span>
-              <span className="title-name">Md Mamun Hossain</span>
+              <span className="title-line text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl block mb-1 sm:mb-2">Hi, I'm</span>
+              <span className="title-name block mb-1 sm:mb-2">Md Mamun Hossain</span>
               <span 
-                className="title-role text-xl sm:text-2xl lg:text-3xl"
+                className="title-role text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl block"
                 style={{ 
                   color: ['#60a5fa', '#10b981', '#8b5cf6', '#f59e0b', '#ef4444'][currentIndex]
                 }}
@@ -130,7 +134,8 @@ const Hero = () => {
 
             {/* Description */}
             <motion.p 
-              className="hero-description max-w-[52ch] mx-auto lg:mx-0 text-base sm:text-lg"
+              className=" mx-auto lg:mx-0 text-center w-3x4 lg:text-left justify-center text-base md:text-lg lg:text-xl !px-0 sm:px-0 leading-relaxed"
+              // style={{ textAlign: isDesktop ? 'left' : 'center' }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
@@ -141,65 +146,68 @@ const Hero = () => {
 
             {/* Action Buttons */}
             <motion.div 
-              className="hero-actions flex flex-col sm:flex-row items-stretch sm:items-center gap-4"
+              className="hero-actions flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 justify-center md:!justify-center lg:!justify-start"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.8 }}
             >
               <motion.button
-                className="btn-primary w-full sm:w-auto"
+                className="btn-primary w-full sm:w-auto max-w-xs mx-auto sm:mx-0 text-sm xs:text-base sm:text-lg font-semibold py-3 px-6"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Let's Work Together</span>
-                <ArrowRight size={18} />
+                <a href="#skills"><span className='text-white'>Let's Work Together</ span></a>
+                <ArrowRight className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
               </motion.button>
               
               <motion.a
                 href={resumePDF}
                 download="Md_Mamun_Hossain_Resume.pdf"
-                className="btn-secondary w-full sm:w-auto"
+                className="btn-secondary w-full sm:w-auto max-w-xs mx-auto sm:mx-0 text-sm xs:text-base sm:text-lg font-semibold py-3 px-6"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Download size={18} />
+                <Download className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" />
                 <span>Download CV</span>
               </motion.a>
             </motion.div>
 
             {/* Social Links */}
             <motion.div 
-              className="hero-social"
+              className="hero-social flex flex-col items-center md:!items-center lg:!items-start gap-3"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1, duration: 0.8 }}
             >
-              <span className="social-label">Connect with me:</span>
-              <div className="social-links flex gap-3 justify-center lg:justify-start">
+              <span className="social-label text-center md:!text-center lg:!text-left text-xs xs:text-sm sm:text-base font-medium">Connect with me:</span>
+              <div className="social-links flex gap-2 xs:gap-3 sm:gap-4 justify-center md:!justify-center lg:!justify-start">
                 <motion.a
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 flex items-center justify-center"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Github size={22} />
+                  <Github className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7" />
                 </motion.a>
                 <motion.a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 flex items-center justify-center"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Linkedin size={22} />
+                  <Linkedin className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7" />
                 </motion.a>
                 <motion.a
                   href="mailto:developermamun1999@gmail.com?subject=Hello%20Mamun%20%E2%80%93%20Project%20Inquiry"
+                  className="w-10 h-10 xs:w-11 xs:h-11 sm:w-12 sm:h-12 flex items-center justify-center"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <Mail size={22} />
+                  <Mail className="w-5 h-5 xs:w-6 xs:h-6 sm:w-7 sm:h-7" />
                 </motion.a>
               </div>
             </motion.div>
@@ -207,7 +215,7 @@ const Hero = () => {
 
           {/* Right Side Coding Animation */}
           <motion.div 
-            className="hero-visual h-[360px] sm:h-[420px] md:h-[500px] lg:h-[600px]"
+            className="hero-visual h-[280px] xs:h-[320px] sm:h-[380px] md:h-[450px] lg:h-[600px] order-first lg:order-last"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}

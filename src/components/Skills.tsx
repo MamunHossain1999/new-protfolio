@@ -155,7 +155,7 @@ const Skills = () => {
             {/* Main Title */}
             <motion.h2
               variants={itemVariants}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-8 leading-tight relative"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight relative"
             >
               <span className="relative inline-block">
                 Skills &
@@ -168,7 +168,7 @@ const Skills = () => {
             {/* Subtitle */}
             <motion.p
               variants={itemVariants}
-              className="text-lg sm:text-xl md:text-2xl text-slate-300 w-full !py-12 justify-center flex items-center mx-auto leading-relaxed font-light relative"
+              className="text-base sm:text-lg md:text-xl text-slate-300 w-full !py-8 justify-center flex items-center mx-auto leading-relaxed font-light relative"
             >
               <span className="relative max-w-3xl">
                 Crafting exceptional digital experiences with
@@ -264,7 +264,7 @@ const Skills = () => {
                     </motion.div>
 
                     <div>
-                      <h3 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-300 transition-all duration-500">
+                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-black text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-blue-300 transition-all duration-500">
                         {category.title}
                       </h3>
                       <div className="w-0 group-hover:w-full h-1 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full transition-all duration-700 delay-200"></div>
@@ -324,7 +324,7 @@ const Skills = () => {
 
                               <div>
                                 <span
-                                  className="text-white font-bold text-lg sm:text-xl 
+                                  className="text-white font-bold text-base sm:text-lg 
                                group-hover/skill:text-transparent group-hover/skill:bg-clip-text 
                                group-hover/skill:bg-gradient-to-r 
                                group-hover/skill:from-blue-300 group-hover/skill:to-purple-300 
@@ -405,10 +405,10 @@ const Skills = () => {
               variants={itemVariants}
               className="text-center mb-8 sm:mb-12 !lg:mb-16"
             >
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white !mb-3 sm:mb-4">
+              <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white !mb-3 sm:mb-4">
                 Core Expertise
               </h3>
-              <p className="text-slate-300 text-base sm:text-lg lg:text-xl !mb-3">
+              <p className="text-slate-300 text-sm sm:text-base lg:text-lg !mb-3">
                 Areas where I excel and deliver exceptional results
               </p>
             </motion.div>
@@ -423,10 +423,10 @@ const Skills = () => {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="mb-6">
-                    <h4 className="text-lg font-bold text-white !mb-2">
+                    <h4 className="text-base font-bold text-white !mb-2">
                       {item.name}
                     </h4>
-                    <p className="text-slate-300 text-sm">{item.description}</p>
+                    <p className="text-slate-300 text-xs">{item.description}</p>
                   </div>
                   <div className="flex justify-center">
                     <div className="relative w-20 h-20 !mt-4">
@@ -482,7 +482,7 @@ const Skills = () => {
                 <TrendingUp size={16} />
                 <span>Always Learning</span>
               </div>
-              <h3 className="text-3xl lg:text-4xl font-bold text-white">
+              <h3 className="text-2xl lg:text-3xl font-bold text-white">
                 Technology Stack
               </h3>
             </motion.div>
@@ -506,10 +506,10 @@ const Skills = () => {
                   key={index}
                   className={`inline-flex items-center gap-2 !px-4 !py-2 bg-white/5 backdrop-blur-sm border border-white/10 rounded-full text-white font-medium hover:bg-white/10 transition-all duration-300 ${
                     tech.size === "large"
-                      ? "text-lg px-6 py-3"
-                      : tech.size === "medium"
                       ? "text-base px-5 py-2"
-                      : "text-sm px-3 py-1"
+                      : tech.size === "medium"
+                      ? "text-sm px-4 py-2"
+                      : "text-xs px-3 py-1"
                   }`}
                   initial={{ opacity: 0, scale: 0 }}
                   whileInView={{ opacity: 1, scale: 1 }}

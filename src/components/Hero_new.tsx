@@ -3,7 +3,7 @@ import { Github, Linkedin, Mail, ArrowRight, Download, Code, Sparkles, Database,
 import { useState, useEffect } from 'react';
 import Lottie from 'lottie-react';
 import developerAnimationData from '../assets/developer skills (1).json';
-import resumePDF from '../assets/Cover Letter Doc (2).pdf';
+import resumePDF from '../assets/Md_Mamun_Hossain_Frontend_Developer.pdf';
 
 const Hero = () => {
   const [displayText, setDisplayText] = useState('');
